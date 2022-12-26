@@ -4,9 +4,9 @@ namespace Pokedex.Library.Data.Pokedex;
 
 public interface IPokedexResponsitory
 {
-	List<PokedexModel> GetPokedexModelList();
-	PokedexModel GetPokedexModelById(int id);
-	PokedexModel AddPokedexModel(PokedexModel model);
-	PokedexModel UpdatePokedexModel(PokedexModel model);
-	PokedexModel DeletePokedexModel(int id);
+	Task<List<PokedexModel>> GetPokedexModelList();
+	Task<PokedexModel> GetPokedexModelById(int id);
+	Task<PokedexModel> AddPokedexModel(PokedexModel model);
+	Task<PokedexModel> UpdatePokedexModel(PokedexModel model);
+	Task<PokedexModel> DeletePokedexModel(int id);
 }

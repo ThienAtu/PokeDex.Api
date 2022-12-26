@@ -1,4 +1,5 @@
-﻿using Pokedex.Library.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Pokedex.Library.Model;
 
 namespace Pokedex.Library.Data.Pokedex;
 
@@ -11,28 +12,28 @@ public class PokedexResponsitory : IPokedexResponsitory
 		_context = context;
 	}
 
-	public PokedexModel AddPokedexModel(PokedexModel model)
+	public Task<PokedexModel> AddPokedexModel(PokedexModel model)
 	{
 		throw new NotImplementedException();
 	}
 
-	public PokedexModel DeletePokedexModel(int id)
+	public Task<PokedexModel> DeletePokedexModel(int id)
 	{
 		throw new NotImplementedException();
 	}
 
-	public PokedexModel GetPokedexModelById(int id)
+	public Task<PokedexModel> GetPokedexModelById(int id)
 	{
 		throw new NotImplementedException();
 	}
 
-	public List<PokedexModel> GetPokedexModelList()
+	public async Task<List<PokedexModel>> GetPokedexModelList()
 	{
-		var result = _context.PokedexModels.ToList();
+		var result = await _context.PokedexModels.FromSqlRaw("EXEC GetPokedexList").ToListAsync();
 		return result;
 	}
 
-	public PokedexModel UpdatePokedexModel(PokedexModel model)
+	public Task<PokedexModel> UpdatePokedexModel(PokedexModel model)
 	{
 		throw new NotImplementedException();
 	}

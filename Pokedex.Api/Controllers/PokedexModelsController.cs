@@ -1,26 +1,30 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Pokedex.Library.Dtos;
 using Pokedex.Library.Model;
 using Pokedex.Library.Queries.Pokedex;
 
-namespace Pokedex.Api.Controllers
+namespace Pokedex.Api.Controllers;
+
+[Route("api/pokedex")]
+[ApiController]
+public class PokedexModelsController : ControllerBase
 {
-	[Route("api/pokedex")]
-	[ApiController]
-	public class PokedexModelsController : ControllerBase
+	private IMediator _mediator;
+	private readonly IMapper _mapper;
+
+	public PokedexModelsController(IMediator mediator, IMapper mapper)
 	{
-		private IMediator _mediator;
+		_mediator = mediator;
+		_mapper = mapper;
+	}
 
-		public PokedexModelsController(IMediator mediator)
-		{
-			_mediator = mediator;
-		}
-
-		[HttpGet]
-		public async Task<List<PokedexModel>> GetPokedexModelList()
-		{
-			var result = await _mediator.Send(new GetPokedexListQuery());
-			return result;
-		}
+	[HttpGet]
+	public async Task<ActionResult<List<PokedexModel>>> GetPokedexModelList()
+	{
+		var pokedex = await _mediator.Send(new GetPokedexListQuery());
+		var result = pokedex.Select(_ => _mapper.Map<PokedexModelDto>(_));
+		return Ok(result);
 	}
 }

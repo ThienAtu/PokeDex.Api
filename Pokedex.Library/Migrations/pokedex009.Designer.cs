@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pokedex.Library.Data.Pokedex;
 
@@ -10,9 +11,11 @@ using Pokedex.Library.Data.Pokedex;
 namespace Pokedex.Library.Migrations
 {
     [DbContext(typeof(PokedexDbContext))]
-    partial class PokedexDbContextModelSnapshot : ModelSnapshot
-    {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+    [Migration("pokedex009")]
+    partial class pokedex009
+	{
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

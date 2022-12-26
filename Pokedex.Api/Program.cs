@@ -18,6 +18,7 @@ builder.Services.AddDbContext<PokedexDbContext>(_ =>
 });
 builder.Services.AddTransient<IPokedexResponsitory, PokedexResponsitory>();
 builder.Services.AddMediatR(typeof(PokedexResponsitory).Assembly);
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 var app = builder.Build();
 
