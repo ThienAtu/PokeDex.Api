@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Pokedex.Library.Model;
 
 namespace Pokedex.Library.Data.Pokedex;
@@ -22,14 +23,15 @@ public class PokedexResponsitory : IPokedexResponsitory
 		throw new NotImplementedException();
 	}
 
-	public Task<PokedexModel> GetPokedexModelById(int id)
+	public async Task<PokedexModel?> GetPokedexModelById(int id)
 	{
-		throw new NotImplementedException();
+		var result = await _context.PokedexModels.FromSqlRaw($"EXEC sp_Pokedex_GetById {id}").ToListAsync();
+		return result.FirstOrDefault();
 	}
 
 	public async Task<List<PokedexModel>> GetPokedexModelList()
 	{
-		var result = await _context.PokedexModels.FromSqlRaw("EXEC GetPokedexList").ToListAsync();
+		var result = await _context.PokedexModels.FromSqlRaw("EXEC sp_Pokedex_GetAll").ToListAsync();
 		return result;
 	}
 

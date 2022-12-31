@@ -23,8 +23,16 @@ public class PokedexModelsController : ControllerBase
 	[HttpGet]
 	public async Task<ActionResult<List<PokedexModel>>> GetPokedexModelList()
 	{
-		var pokedex = await _mediator.Send(new GetPokedexListQuery());
-		var result = pokedex.Select(_ => _mapper.Map<PokedexModelDto>(_));
+		var pokedexList = await _mediator.Send(new GetPokedexListQuery());
+		var result = pokedexList.Select(_ => _mapper.Map<PokedexModelDto>(_));
+		return Ok(result);
+	}
+
+	[HttpGet("{Id}")]
+	public async Task<ActionResult<PokedexModel>> GetPokedexModelById([FromRoute] GetPokedexModelByIdQuery request)
+	{
+		var pokedex = await _mediator.Send(request);
+		var result = _mapper.Map<PokedexModelDto>(pokedex);
 		return Ok(result);
 	}
 }

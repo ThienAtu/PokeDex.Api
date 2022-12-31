@@ -8,16 +8,17 @@ public class GetPokedexListQuery : IRequest<List<PokedexModel>>
 {
 	public class GetPokedexListQueryHandler : IRequestHandler<GetPokedexListQuery, List<PokedexModel>>
 	{
-		private readonly IPokedexResponsitory _pokedexResponsitory;
+		private readonly IPokedexResponsitory _responsitory;
 
-		public GetPokedexListQueryHandler(IPokedexResponsitory pokedexResponsitory)
+		public GetPokedexListQueryHandler(IPokedexResponsitory responsitory)
 		{
-			_pokedexResponsitory = pokedexResponsitory;
+			_responsitory = responsitory;
 		}
 
 		public Task<List<PokedexModel>> Handle(GetPokedexListQuery request, CancellationToken cancellationToken)
 		{
-			var result = Task.FromResult(_pokedexResponsitory.GetPokedexModelList()).Result;
+			var result = Task.FromResult(_responsitory.GetPokedexModelList()).Result;
+			if (result is null) throw new Exception($"{nameof(PokedexModel)} was not found !");
 			return result;
 		}
 	}
