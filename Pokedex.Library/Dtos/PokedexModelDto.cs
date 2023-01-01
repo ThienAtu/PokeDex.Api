@@ -17,4 +17,6 @@ public class PokedexModelDto
 	public decimal Height { get; set; }
 
 	public decimal Weight { get; set; }
+
+	public string ImageUrl { get; set; } = string.Empty;
 }

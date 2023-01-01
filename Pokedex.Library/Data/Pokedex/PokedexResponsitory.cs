@@ -14,7 +14,7 @@ public class PokedexResponsitory : IPokedexResponsitory
 
 	public async Task<PokedexModel?> AddPokedex(PokedexModel model)
 	{
-		var param = string.Join(",", model.Number, model.Name, model.NameJapanese, model.NameRomanji, model.Type1, model.Type2, model.Height, model.Weight);
+		var param = string.Join(",", model.Number, model.Name, model.NameJapanese, model.NameRomanji, model.Type1, model.Type2, model.Height, model.Weight, model.ImageUrl);
 		var rowAffected = await _context.Database.ExecuteSqlRawAsync($"EXEC sp_Pokedex_Insert {param}");
 		var result = (rowAffected > 0) ? model : null;
 		return result;
@@ -46,7 +46,7 @@ public class PokedexResponsitory : IPokedexResponsitory
 
 	public async Task<PokedexModel?> UpdatePokedex(PokedexModel model)
 	{
-		var param = string.Join(",", model.Id, model.Number, model.Name, model.NameJapanese, model.NameRomanji, model.Type1, model.Type2, model.Height, model.Weight);
+		var param = string.Join(",", model.Id, model.Number, model.Name, model.NameJapanese, model.NameRomanji, model.Type1, model.Type2, model.Height, model.Weight, model.ImageUrl);
 		var rowAffected = await _context.Database.ExecuteSqlRawAsync($"EXEC sp_Pokedex_Update {param}");
 		var result = (rowAffected > 0) ? model : null;
 		return result;
