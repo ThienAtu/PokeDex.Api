@@ -26,7 +26,8 @@ public class InsertPokedexCommand : IRequest<PokedexModel>
 				Type1 = request.Type1,
 				Type2 = request.Type2,
 				Height = request.Height,
-				Weight = request.Height
+				Weight = request.Height,
+				ImageUrl = request.ImageUrl
 			};
 
 			var result = Task.FromResult(_responsitory.AddPokedex(pokedex).Result);
@@ -49,4 +50,6 @@ public class InsertPokedexCommand : IRequest<PokedexModel>
 	public decimal Height { get; set; }
 
 	public decimal Weight { get; set; }
+
+	public string ImageUrl { get; set; } = string.Empty;
 }

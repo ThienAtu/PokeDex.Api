@@ -27,7 +27,8 @@ public class UpdatePokedexCommand : IRequest<PokedexModel>
 				Type1 = request.Type1,
 				Type2 = request.Type2,
 				Height = request.Height,
-				Weight = request.Height
+				Weight = request.Height,
+				ImageUrl = request.ImageUrl
 			};
 
 			var result = Task.FromResult(_responsitory.UpdatePokedex(pokedex).Result);
@@ -52,4 +53,6 @@ public class UpdatePokedexCommand : IRequest<PokedexModel>
 	public decimal Height { get; set; }
 
 	public decimal Weight { get; set; }
+
+	public string ImageUrl { get; set; } = string.Empty;
 }

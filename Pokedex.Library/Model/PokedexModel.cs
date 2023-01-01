@@ -33,4 +33,7 @@ public class PokedexModel
 
 	[Column(TypeName = "decimal(18,1)")]
 	public decimal Weight { get; set; }
+
+	[Column(TypeName = "nvarchar(200)")]
+	public string ImageUrl { get; set; } = string.Empty;
 }
