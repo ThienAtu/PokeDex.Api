@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Pokedex.Library.Data.Pokedex;
+using Pokedex.Library.Data;
 
 #nullable disable
 
@@ -12,7 +12,7 @@ namespace Pokedex.Library.Migrations;
 
 [DbContext(typeof(PokedexDbContext))]
 [Migration("pokedex")]
-partial class Pokedex
+partial class PokedexMigrate
 {
 	/// <inheritdoc />
 	protected override void BuildTargetModel(ModelBuilder modelBuilder)

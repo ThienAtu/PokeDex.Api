@@ -1,5 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Pokedex.Library.Model;
 
 namespace Pokedex.Library.Data.Pokedex;
@@ -13,30 +12,43 @@ public class PokedexResponsitory : IPokedexResponsitory
 		_context = context;
 	}
 
-	public Task<PokedexModel> AddPokedexModel(PokedexModel model)
+	public async Task<PokedexModel?> AddPokedex(PokedexModel model)
 	{
-		throw new NotImplementedException();
-	}
-
-	public Task<PokedexModel> DeletePokedexModel(int id)
-	{
-		throw new NotImplementedException();
-	}
-
-	public async Task<PokedexModel?> GetPokedexModelById(int id)
-	{
-		var result = await _context.PokedexModels.FromSqlRaw($"EXEC sp_Pokedex_GetById {id}").ToListAsync();
-		return result.FirstOrDefault();
-	}
-
-	public async Task<List<PokedexModel>> GetPokedexModelList()
-	{
-		var result = await _context.PokedexModels.FromSqlRaw("EXEC sp_Pokedex_GetAll").ToListAsync();
+		var param = string.Join(",", model.Number, model.Name, model.NameJapanese, model.NameRomanji, model.Type1, model.Type2, model.Height, model.Weight);
+		var rowAffected = await _context.Database.ExecuteSqlRawAsync($"EXEC sp_Pokedex_Insert {param}");
+		var result = (rowAffected > 0) ? model : null;
 		return result;
 	}
 
-	public Task<PokedexModel> UpdatePokedexModel(PokedexModel model)
+	public async Task<int> DeletePokedex()
 	{
-		throw new NotImplementedException();
+		var result = await _context.Database.ExecuteSqlRawAsync($"EXEC sp_Pokedex_Delete");
+		return result;
+	}
+
+	public async Task<int> DeletePokedexById(int id)
+	{
+		var result = await _context.Database.ExecuteSqlRawAsync($"EXEC sp_Pokedex_DeleteById {id}");
+		return result;
+	}
+
+	public async Task<PokedexModel?> GetPokedexById(int id)
+	{
+		var result = await _context.Pokedexs.FromSqlRaw($"EXEC sp_Pokedex_GetById {id}").ToListAsync();
+		return result.FirstOrDefault();
+	}
+
+	public async Task<List<PokedexModel>> GetPokedex()
+	{
+		var result = await _context.Pokedexs.FromSqlRaw("EXEC sp_Pokedex_Get").ToListAsync();
+		return result;
+	}
+
+	public async Task<PokedexModel?> UpdatePokedex(PokedexModel model)
+	{
+		var param = string.Join(",", model.Id, model.Number, model.Name, model.NameJapanese, model.NameRomanji, model.Type1, model.Type2, model.Height, model.Weight);
+		var rowAffected = await _context.Database.ExecuteSqlRawAsync($"EXEC sp_Pokedex_Update {param}");
+		var result = (rowAffected > 0) ? model : null;
+		return result;
 	}
 }
