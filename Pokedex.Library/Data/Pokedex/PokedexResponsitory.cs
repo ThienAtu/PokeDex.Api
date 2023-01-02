@@ -38,7 +38,7 @@ public class PokedexResponsitory : IPokedexResponsitory
 		return result.FirstOrDefault();
 	}
 
-	public async Task<List<PokedexModel>> GetPokedex()
+	public async Task<IEnumerable<PokedexModel>> GetPokedex()
 	{
 		var result = await _context.Pokedexs.FromSqlRaw("EXEC sp_Pokedex_Get").ToListAsync();
 		return result;

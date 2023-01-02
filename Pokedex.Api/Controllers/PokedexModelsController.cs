@@ -22,7 +22,7 @@ public class PokedexModelsController : ControllerBase
 	}
 
 	[HttpPost("get")]
-	public async Task<ActionResult<List<PokedexModel>>> Get()
+	public async Task<ActionResult<IEnumerable<PokedexModel>>> Get()
 	{
 		var pokedexList = await _mediator.Send(new GetPokedexListQuery());
 		var result = pokedexList.Select(_ => _mapper.Map<PokedexModelDto>(_));
