@@ -24,8 +24,7 @@ public abstract class MigrationsExecute : Migration
 	private void RunSqlQuery(MigrationBuilder migrationBuilder, string action)
 	{
 		var file = Path.GetFullPath($"Migrations/Scripts/{_sqlFile}_{action}.sql");
-		var reader = new StreamReader(file);
-		var data = reader.ReadToEnd();
+		var data = File.ReadAllText(file);
 		migrationBuilder.Sql(data);
 	}
 }
