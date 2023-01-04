@@ -1,0 +1,31 @@
+﻿@page "/"
+@inherits PokedexBase
+
+@if (Pokedexs is null)
+{
+  <h3>Oh no! Something wrong...</h3>
+}
+else
+{
+  <h3 class="mb-5">All Pokemon</h3>
+
+  <div class="row mt-3">
+    @foreach (var poke in Pokedexs)
+    {
+      <div class="col-md-2 mb-2">
+        <div class="card mb-3 align-items-center">
+          <a href="#">
+            <img class="img-thumbnail" src="@poke!.ImageUrl" />
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-3 fw-bold">@poke!.Name</h5>
+          </div>
+          <h5 class="card-text mb-5">
+            @poke.NameJapanese
+            (@poke!.NameRomanji)
+          </h5>
+        </div>
+      </div>
+    }
+  </div>
+}
