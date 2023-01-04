@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Design;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Pokedex.Library.Data;
+using Microsoft.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,11 @@ if (app.Environment.IsDevelopment())
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
+
+app.UseCors(_ =>
+	_.WithOrigins("https://localhost:7000", "http://localhost:7001")
+	.AllowAnyMethod()
+	.WithHeaders(HeaderNames.ContentType));
 
 app.UseHttpsRedirection();
 
