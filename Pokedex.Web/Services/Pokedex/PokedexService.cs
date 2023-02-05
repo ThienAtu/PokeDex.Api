@@ -31,6 +31,7 @@ public class PokedexService : IPokedexService
     try
     {
       var pokedexs = await _httpClient.PostAsJsonAsync($"api/pokedex/get/{id}", new { });
+      //var pokedexs = await _httpClient.PostAsync($"api/pokedex/get/{id}", null);
       var result = await pokedexs.Content.ReadFromJsonAsync<PokedexModelDto>();
       return result!;
     }

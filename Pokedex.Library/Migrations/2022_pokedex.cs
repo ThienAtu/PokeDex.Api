@@ -4,6 +4,6 @@ namespace Pokedex.Library.Migrations;
 
 public partial class PokedexMigrate : MigrationsExecute
 {
-	public PokedexMigrate()
-		: base("pokedex") { }
+  public PokedexMigrate()
+    : base("pokedex") { }
 }

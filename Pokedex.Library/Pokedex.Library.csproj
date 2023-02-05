@@ -44,6 +44,12 @@
     <None Update="Migrations\Scripts\pokedex_down.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Migrations\Scripts\pokeUser_down.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Migrations\Scripts\pokeUser_up.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Migrations\Scripts\pokedex_up.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

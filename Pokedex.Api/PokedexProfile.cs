@@ -6,9 +6,12 @@ namespace Pokedex.Api;
 
 public class PokedexProfile : Profile
 {
-	public PokedexProfile()
-	{
-		CreateMap<PokedexModel, PokedexModelDto>();
-		CreateMap<PokedexModelDto, PokedexModel>();
-	}
+  public PokedexProfile()
+  {
+    CreateMap<PokedexModel, PokedexModelDto>();
+    CreateMap<PokedexModelDto, PokedexModel>();
+
+    CreateMap<PokeUserModel, PokeUserModelDto>();
+    CreateMap<PokeUserModelDto, PokeUserModel>();
+  }
 }

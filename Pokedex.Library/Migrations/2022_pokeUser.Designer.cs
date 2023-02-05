@@ -9,8 +9,8 @@ using Pokedex.Library.Data;
 namespace Pokedex.Library.Migrations;
 
 [DbContext(typeof(PokedexDbContext))]
-[Migration("pokedex")]
-partial class PokedexMigrate
+[Migration("pokeUser")]
+partial class UserMigrate
 {
   /// <inheritdoc />
   protected override void BuildTargetModel(ModelBuilder modelBuilder)
