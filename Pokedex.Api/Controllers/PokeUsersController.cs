@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -39,7 +40,7 @@ public class PokeUsersController : ControllerBase
     return Ok(result);
   }
 
-  [HttpPost("get/{Id}")]
+  [HttpPost("get/{Id}"), Authorize(Roles = "Admin")]
   public async Task<ActionResult<PokeUserModel>> GetById([FromRoute] GetUserByIdQuery request)
   {
     var user = await _mediator.Send(request);
@@ -52,7 +53,7 @@ public class PokeUsersController : ControllerBase
   {
     var token = string.Empty;
     var verifyPassword = await new PasswordHasher(_repository).VerifyPassword(request.UserName, request.Password);
-    if(verifyPassword)
+    if (verifyPassword)
     {
       var user = await _repository.GetUser(request.UserName);
       token = new JwtProvider(_configuration).Generate(user!);

@@ -14,17 +14,23 @@ public class JwtProvider : IJwtProvider
 {
   private readonly IConfiguration _configuration;
 
-  public JwtProvider( IConfiguration configuration)
+  public JwtProvider(IConfiguration configuration)
   {
     _configuration = configuration;
   }
 
   public string Generate(PokeUserModel user)
   {
-    var claims = new Claim[]
+    //var claims = new Claim[]
+    //{
+    //    new (JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+    //    new (JwtRegisteredClaimNames.Name, user.UserName),
+    //};
+
+    var claims = new List<Claim>
     {
-      new (JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-      new (JwtRegisteredClaimNames.Name, user.UserName),
+      new Claim(ClaimTypes.Name, user.UserName),
+      new Claim(ClaimTypes.Role, "Admin"),
     };
 
     var secretKey = _configuration.GetSection("JwtOption:SecretKey").Value;
