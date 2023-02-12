@@ -1,17 +1,12 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using Pokedex.Library.Data.PokeUser;
 using Pokedex.Library.Dtos;
 using Pokedex.Library.Model;
 using Pokedex.Library.Queries.PokeUser;
 using Pokedex.Library.Security;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace Pokedex.Api.Controllers;
 

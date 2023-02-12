@@ -21,12 +21,6 @@ public class JwtProvider : IJwtProvider
 
   public string Generate(PokeUserModel user)
   {
-    //var claims = new Claim[]
-    //{
-    //    new (JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-    //    new (JwtRegisteredClaimNames.Name, user.UserName),
-    //};
-
     var claims = new List<Claim>
     {
       new Claim(ClaimTypes.Name, user.UserName),
