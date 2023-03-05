@@ -4,7 +4,7 @@ public class StringUtility
 {
   public static string ToEmpty(string value)
   {
-    if(value is null
+    if (value is null
       || (value == string.Empty))
     {
       return string.Empty;
